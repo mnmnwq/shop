@@ -2,13 +2,12 @@
 /**
  * Created by PhpStorm.
  * User: baiwei
- * Date: 2019/11/11
- * Time: 16:53
+ * Date: 2019/11/8
+ * Time: 17:19
  */
 namespace app\admin\controller;
-use think\Controller;
 
-class Index extends Controller {
+class Index{
     public function index()
     {
         return view('index');
