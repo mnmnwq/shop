@@ -96,18 +96,6 @@
         $('#confirm').prop('href',"{:url('Brand/del')}?id="+brand_id);
         $(".banDel").show();
     });
-    $('.pagination a').click(function(){
-        var url = $(this).prop('herf');
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: "",
-            success: function(result){
-                $('.conShow').html(result);
-            }
-        });
-        return false;
-    });
     $(".close").click(function(){
         $(".banDel").hide();
     });
