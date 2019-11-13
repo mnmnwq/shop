@@ -14,6 +14,9 @@ class Brand extends  Controller{
     public function index()
     {
         $brand_info = ShopBrand::paginate(2);
+        if(request()->isAjax()){
+            return view('ajax_page',['brand_info'=>$brand_info]);
+        }
         return view('index',['brand_info'=>$brand_info]);
     }
 
