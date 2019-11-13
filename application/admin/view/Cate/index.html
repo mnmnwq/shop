@@ -2,15 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<<<<<<< HEAD
-    <title>分类管理</title>
-    <link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/css.css" />
-    <script type="text/javascript" src="__STATIC__/admin/js/jquery.min.js"></script>
-=======
     <title>约见管理-有点</title>
     <link rel="stylesheet" type="text/css" href="/static/admin/css/css.css" />
     <script type="text/javascript" src="/static/admin/js/jquery.min.js"></script>
->>>>>>> 1907
     <!-- <script type="text/javascript" src="js/page.js" ></script> -->
 </head>
 
@@ -18,48 +12,27 @@
 <div id="pageAll">
     <div class="pageTop">
         <div class="page">
-<<<<<<< HEAD
-            <img src="__STATIC__/admin/img/coin02.png" /><span><a href="{:url('Index/main')}">首页</a>&nbsp;-&nbsp;分类管理&nbsp;-</span>&nbsp;分类列表
-=======
             <img src="/static/admin/img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
                 href="#">公共管理</a>&nbsp;-</span>&nbsp;节目管理
->>>>>>> 1907
         </div>
     </div>
 
     <div class="page">
         <!-- banner页面样式 -->
         <div class="connoisseur">
-<<<<<<< HEAD
-            <!--<div class="conform">-->
-                <!--<form action="" method="">-->
-                    <!--<div class="cfD">-->
-                        <!--<input class="addUser" type="text" placeholder="输入分类名称" />-->
-                        <!--<button class="button">搜索</button>-->
-                    <!--</div>-->
-                <!--</form>-->
-            <!--</div>-->
-=======
->>>>>>> 1907
             <!-- banner 表格 显示 -->
             <div class="conShow">
                 <table width="100%" border="1" cellspacing="0" cellpadding="0">
                     <tr>
                         <td width="5%" class="tdColor tdC">ID</td>
-<<<<<<< HEAD
-                        <td width="20%" class="tdColor">分类名称</td>
-                        <td width="20%" class="tdColor">创建时间</td>
-=======
                         <td width="5%" class="tdColor tdC">分类名称</td>
                         <td width="5%" class="tdColor tdC">父级ID</td>
                         <td width="20%" class="tdColor">添加时间</td>
->>>>>>> 1907
                         <td width="10%" class="tdColor">操作</td>
                     </tr>
                     {foreach $cate as $v}
                     <tr>
                         <td>{$v.id}</td>
-<<
                         <td style="text-align: left">{php}echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level'])."|--"{/php}{$v.cate_name}</td>
                         <td>{$v.pid}</td>
                         <td>{$v.add_time|date="Y-m-d H:i:s"}</td>
