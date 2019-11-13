@@ -12,6 +12,33 @@ use app\model\ShopCate;
 use think\Controller;
 
 class Cate extends Controller{
+
+    public function index(){
+        $cate_info = ShopCate::select();
+        $result = createTree($cate_info);
+        return view('index',['cate'=>$result]);
+    }
+
+    public function del(){
+        $post = input();
+        $node_num = ShopCate::where('pid',$post['id'])->count();
+        if($node_num >0){
+            $this->error('不能删除');
+        }
+        $result = ShopCate::where('id','=',$post['id'])->delete();
+        if($result){
+            $this->success('成功');
+        }else{
+            $this->error('失败');
+        }
+    }
+
+    public function update(){}
+
+    public function do_update(){
+
+    }
+
     /**
      * 添加分类
      */
@@ -34,7 +61,7 @@ class Cate extends Controller{
         $shop_cate->add_time = time();
         $result = $shop_cate->save();
         if($result){
-            $this->success('成功');
+            $this->success('成功','index');
         }else{
             $this->error('失败');
         }
