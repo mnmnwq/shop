@@ -40,7 +40,8 @@
                             <a href="{:url('Cate/update','id='.$v.id)}">
                             <img class="operation" src="/static/admin/img/update.png">
                             </a>
-                            <img class="operation delban" data-id="{$v.id}" src="/static/admin/img/delete.png"></td>
+                            <img class="operation delban" data-id="{$v.id}" src="/static/admin/img/delete.png">
+                        </td>
                     </tr>
                     {/foreach}
 
@@ -77,6 +78,7 @@
         $('#confirm').prop('href',"{:url('Cate/del')}?id="+cate_id);
         $(".banDel").show();
     });
+
     $(".close").click(function(){
         $(".banDel").hide();
     });

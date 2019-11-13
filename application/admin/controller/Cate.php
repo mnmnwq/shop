@@ -33,10 +33,25 @@ class Cate extends Controller{
         }
     }
 
-    public function update(){}
+    public function update(){
+        $post = input();
+        $info = ShopCate::where('id',$post['id'])->find(); //要修改的数据
+        $cate_info = ShopCate::select();
+        $result = createTree($cate_info);
+        return view('update',['info'=>$info,'cate'=>$result]);
+    }
 
     public function do_update(){
-
+        $post = input();
+        $result = ShopCate::where('id',$post['id'])->update([
+            'cate_name'=>$post['cate_name'],
+            'pid'=>$post['pid']
+        ]);
+        if($result){
+            $this->success('成功','index');
+        }else{
+            $this->error('失败');
+        }
     }
 
     /**
