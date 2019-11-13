@@ -6,6 +6,7 @@
  * Time: 7:17
  */
 namespace app\admin\controller;
+use app\model\ShopGoods;
 use http\Params;
 
 class Goods{
@@ -31,8 +32,11 @@ class Goods{
     public function do_add_goods()
     {
         $param = request()->param();
-        $more_up = more_upload('goods_images');
-        dump($more_up);
+        //$more_up = more_upload('goods_images');
+
+        $shop_goods = new ShopGoods;
+        $shop_goods->desc = $param['desc'];
+        $shop_goods->save();
     }
 
 

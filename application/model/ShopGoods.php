@@ -5,7 +5,7 @@
  * Date: 2019/11/10
  * Time: 14:52
  */
-namespace app\admin\controller;
+namespace app\model;
 
 use think\Model;
 
