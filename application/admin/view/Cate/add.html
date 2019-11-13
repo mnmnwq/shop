@@ -20,23 +20,24 @@
                 <span>添加分类</span>
             </div>
             <div class="baBody">
+                <form action="{:url('Cate/do_add')}" method="post">
                 <div class="bbD">
                     上级分类：&nbsp;&nbsp;&nbsp;
-                    <select>
+                    <select name="pid">
                         <option>请选择</option>
-                        <option>|--皮鞋</option>
-                        <option>&nbsp;&nbsp;|--男</option>
-                        <option>&nbsp;&nbsp;&nbsp;&nbsp;|--高帮</option>
-                        <option>&nbsp;&nbsp;|--女</option>
+                        {foreach $cate as $v}
+                        <option value="{$v.id}">{php}echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']).'|--';{/php}{$v.cate_name}</option>
+                        {/foreach}
                     </select>
                 </div>
-                <div class="bbD">分类名称：&nbsp;&nbsp;&nbsp;<input type="text" ></div>
+                <div class="bbD">分类名称：&nbsp;&nbsp;&nbsp;<input type="text" name="cate_name"></div>
                 <div class="bbD">
                     <p class="bbDP">
-                        <button class="btn_ok btn_yes" href="#">提交</button>
+                        <button type="submit" class="btn_ok btn_yes" >提交</button>
                         <a class="btn_ok btn_no" href="#">取消</a>
                     </p>
                 </div>
+                </form>
             </div>
         </div>
 

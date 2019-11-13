@@ -18,27 +18,27 @@ class Cate extends Controller{
     public function add()
     {
         $cate_info = ShopCate::select();
-        $result = $this->createTree($cate_info);
-        dump($result);
-        return view('add');
+        $result = createTree($cate_info);
+        return view('add',['cate'=>$result]);
     }
 
     /**
-     * @param $data 表数据【所有节点】
-     * @param int $pid 父级节点id
-     * @param int $level 等级
-     * @return array
+     * 执行添加操作
      */
-    public function createTree($data,$pid=0,$level=0)
+    public function do_add()
     {
-        static $arr = [];
-        $level = $level + 1; //等级
-        foreach($data as $v){
-            if($pid == $v['pid']){
-                $arr[] = str_repeat('&nbsp;',$level).'|--'.$v['cate_name'];
-                $this->createTree($data,$v['id'],$level);
-            }
+        $post = input();
+        $shop_cate = new ShopCate;
+        $shop_cate->cate_name = $post['cate_name'];
+        $shop_cate->pid = $post['pid'];
+        $shop_cate->add_time = time();
+        $result = $shop_cate->save();
+        if($result){
+            $this->success('成功');
+        }else{
+            $this->error('失败');
         }
-        return $arr;
     }
+
+
 }
