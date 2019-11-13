@@ -2,9 +2,15 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<<<<<<< HEAD
     <title>分类管理</title>
     <link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/css.css" />
     <script type="text/javascript" src="__STATIC__/admin/js/jquery.min.js"></script>
+=======
+    <title>约见管理-有点</title>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/css.css" />
+    <script type="text/javascript" src="/static/admin/js/jquery.min.js"></script>
+>>>>>>> 1907
     <!-- <script type="text/javascript" src="js/page.js" ></script> -->
 </head>
 
@@ -12,13 +18,19 @@
 <div id="pageAll">
     <div class="pageTop">
         <div class="page">
+<<<<<<< HEAD
             <img src="__STATIC__/admin/img/coin02.png" /><span><a href="{:url('Index/main')}">首页</a>&nbsp;-&nbsp;分类管理&nbsp;-</span>&nbsp;分类列表
+=======
+            <img src="/static/admin/img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
+                href="#">公共管理</a>&nbsp;-</span>&nbsp;节目管理
+>>>>>>> 1907
         </div>
     </div>
 
     <div class="page">
         <!-- banner页面样式 -->
         <div class="connoisseur">
+<<<<<<< HEAD
             <!--<div class="conform">-->
                 <!--<form action="" method="">-->
                     <!--<div class="cfD">-->
@@ -27,33 +39,40 @@
                     <!--</div>-->
                 <!--</form>-->
             <!--</div>-->
+=======
+>>>>>>> 1907
             <!-- banner 表格 显示 -->
             <div class="conShow">
                 <table width="100%" border="1" cellspacing="0" cellpadding="0">
                     <tr>
                         <td width="5%" class="tdColor tdC">ID</td>
+<<<<<<< HEAD
                         <td width="20%" class="tdColor">分类名称</td>
                         <td width="20%" class="tdColor">创建时间</td>
+=======
+                        <td width="5%" class="tdColor tdC">分类名称</td>
+                        <td width="5%" class="tdColor tdC">父级ID</td>
+                        <td width="20%" class="tdColor">添加时间</td>
+>>>>>>> 1907
                         <td width="10%" class="tdColor">操作</td>
                     </tr>
                     {foreach $cate as $v}
                     <tr>
                         <td>{$v.id}</td>
-                        <td style="text-align: left">
-                            {php}echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']).'|--'{/php}{$v.cate_name}
-                        </td>
-                        <td>{php}echo date('Y-m-d H:i:s',$v['add_time']){/php}</td>
+<<
+                        <td style="text-align: left">{php}echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level'])."|--"{/php}{$v.cate_name}</td>
+                        <td>{$v.pid}</td>
+                        <td>{$v.add_time|date="Y-m-d H:i:s"}</td>
                         <td>
-                            <a href="{:url('Cate/update_cate')}">
-                                <img class="operation" src="__STATIC__/admin/img/update.png">
+                            <a href="{:url('Cate/update','id='.$v.id)}">
+                            <img class="operation" src="/static/admin/img/update.png">
                             </a>
-                            <img class="operation delban" onclick="del_cate('{$v.id}')" src="__STATIC__/admin/img/delete.png">
+                            <img class="operation delban" data-id="{$v.id}" src="/static/admin/img/delete.png">
                         </td>
                     </tr>
                     {/foreach}
 
                 </table>
-                <!--<div class="paging">此处是分页</div>-->
             </div>
             <!-- banner 表格 显示 end-->
         </div>
@@ -67,11 +86,11 @@
 <div class="banDel">
     <div class="delete">
         <div class="close">
-            <a><img src="__STATIC__/admin/img/shanchu.png" /></a>
+            <a><img src="/static/admin/img/shanchu.png" /></a>
         </div>
         <p class="delP1">你确定要删除此条记录吗？</p>
         <p class="delP2">
-            <a href="#" class="ok yes">确定</a><a class="ok no">取消</a>
+            <a id="confirm" href="#" class="ok yes">确定</a><a class="ok no">取消</a>
         </p>
     </div>
 </div>
@@ -79,12 +98,19 @@
 </body>
 
 <script type="text/javascript">
-    $(function(){
-
+    // 广告弹出框
+    $(".delban").click(function(){
+        var cate_id = $(this).attr('data-id');
+        $('#confirm').prop('href',"{:url('Cate/del')}?id="+cate_id);
+        $(".banDel").show();
     });
 
-    var del_cate = function(cate_id){
-        window.location.href = "{:url('Cate/del_cate')}?id="+cate_id;
-    }
+    $(".close").click(function(){
+        $(".banDel").hide();
+    });
+    $(".no").click(function(){
+        $(".banDel").hide();
+    });
+    // 广告弹出框 end
 </script>
 </html>

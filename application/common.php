@@ -70,12 +70,27 @@ function more_upload($field){
     return $up_img;
 }
 
-function upload(){
+function upload()
+{
     $file = request()->file();
     $info = $file->move('./upload/goods');
-    if($info){
+    if ($info) {
         return $info->getSaveName();
-    }else{
+    } else {
         return $info->getError();
     }
+}
+
+function createTree($data,$pid=0,$level=0)
+{
+    static $arr = [];
+    $level = $level + 1; //等级
+    foreach($data as $v){
+        if($pid == $v['pid']){
+            $v['level'] = $level;
+            $arr[] = $v;
+            createTree($data,$v['id'],$level);
+        }
+    }
+    return $arr;
 }
