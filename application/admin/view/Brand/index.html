@@ -60,11 +60,11 @@
                         <td><a href="{:url('Brand/update','id='.$v.id)}">
                             <img class="operation" src="/static/admin/img/update.png">
                         </a>
-                            <img class="operation delban" src="/static/admin/img/delete.png"></td>
+                            <img class="operation delban" data-id="{$v.id}" src="/static/admin/img/delete.png"></td>
                     </tr>
                     {/foreach}
                 </table>
-                <div class="paging">此处是分页</div>
+                <div class="paging">{$brand_info|raw}</div>
             </div>
             <!-- banner 表格 显示 end-->
         </div>
@@ -82,7 +82,7 @@
         </div>
         <p class="delP1">你确定要删除此条记录吗？</p>
         <p class="delP2">
-            <a href="#" class="ok yes">确定</a><a class="ok no">取消</a>
+            <a href="#" id="confirm" class="ok yes">确定</a><a class="ok no">取消</a>
         </p>
     </div>
 </div>
@@ -92,6 +92,8 @@
 <script type="text/javascript">
     // 广告弹出框
     $(".delban").click(function(){
+        var brand_id = $(this).attr('data-id');
+        $('#confirm').prop('href',"{:url('Brand/del')}?id="+brand_id);
         $(".banDel").show();
     });
     $(".close").click(function(){

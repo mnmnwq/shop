@@ -13,7 +13,7 @@ use think\Controller;
 class Brand extends  Controller{
     public function index()
     {
-        $brand_info = ShopBrand::select();
+        $brand_info = ShopBrand::paginate(2);
         return view('index',['brand_info'=>$brand_info]);
     }
 
@@ -61,5 +61,17 @@ class Brand extends  Controller{
         }else{
             $this->error('失败');
         }
+    }
+
+    public function del()
+    {
+        $post = input();
+        $result = ShopBrand::where('id',$post['id'])->delete();
+        if($result){
+            $this->success('成功','index');
+        }else{
+            $this->error('失败');
+        }
+
     }
 }
