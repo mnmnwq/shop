@@ -52,6 +52,7 @@
                     <tr>
                         <td width="5%" class="tdColor tdC">ID</td>
                         <td width="5%" class="tdColor tdC">品牌名称</td>
+                        <td width="5%" class="tdColor tdC">品牌图片</td>
                         <td width="5%" class="tdColor tdC">添加时间</td>
                         <td width="10%" class="tdColor">操作</td>
                     </tr>
@@ -59,6 +60,7 @@
                     <tr>
                         <td>{$v.id}</td>
                         <td>{$v.brand_name}</td>
+                        <td><img src="/uploads/{$v.brand_pic}" height="90" alt=""></td>
                         <td>{$v.add_time|date="Y-m-d H:i:s"}</td>
                         <td><a href="{:url('Brand/update','id='.$v.id)}">
                             <img class="operation" src="/static/admin/img/update.png">

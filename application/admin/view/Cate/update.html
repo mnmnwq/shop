@@ -24,14 +24,16 @@
                     <input type="hidden" name="id" value="{$info.id}">
                     <div class="bbD">
                         上级分类：&nbsp;&nbsp;&nbsp;
-                        <select name="pid">
+                        <select name="pid" disabled>
                             <option>请选择</option>
                             {foreach $cate as $v}
                             <option  value="{$v.id}" {if $info.pid == $v.id} selected {/if} > {php}echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level']).'|--';{/php}{$v.cate_name} </option>
                             {/foreach}
                         </select>
                     </div>
-                    <div class="bbD">分类名称：&nbsp;&nbsp;&nbsp;<input type="text" name="cate_name" value="{$info.cate_name}"></div>
+                    <div class="bbD">分类名称：&nbsp;&nbsp;&nbsp;
+                        <input type="text" name="cate_name" value="{$info.cate_name}">
+                    </div>
                     <div class="bbD">
                         <p class="bbDP">
                             <button type="submit" class="btn_ok btn_yes" >提交</button>

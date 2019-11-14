@@ -44,8 +44,7 @@ class Cate extends Controller{
     public function do_update(){
         $post = input();
         $result = ShopCate::where('id',$post['id'])->update([
-            'cate_name'=>$post['cate_name'],
-            'pid'=>$post['pid']
+            'cate_name'=>$post['cate_name']
         ]);
         if($result){
             $this->success('成功','index');

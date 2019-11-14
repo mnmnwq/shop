@@ -21,8 +21,9 @@
                 <span>添加品牌</span>
             </div>
             <div class="baBody">
-                <form action="{:url('Brand/do_add')}">
+                <form action="{:url('Brand/do_add')}" enctype="multipart/form-data" method="post">
                 <div class="bbD">品牌名称：&nbsp;&nbsp;&nbsp;<input type="text"  name="brand_name"></div>
+                <div class="bbD">品牌图片：&nbsp;&nbsp;&nbsp;<input type="file"  name="brand_img"></div>
                 <div class="bbD">
                     <p class="bbDP">
                         <button class="btn_ok btn_yes" type="submit">提交</button>

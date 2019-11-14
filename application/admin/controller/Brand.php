@@ -21,6 +21,11 @@ class Brand extends  Controller{
             $where[] = ['brand_name','like','%'.$search_name.'%'];
         }
         $brand_info = ShopBrand::where($where)->paginate(2,false,['query'=>input()]);
+        foreach ($brand_info as $v){
+            if($v['brand_pic'] == '0'){
+                $v['brand_pic'] = '/brand/default.jpg';
+            }
+        }
         return view('index',['brand_info'=>$brand_info,'search_name'=>$search_name]);
     }
 
@@ -59,9 +64,23 @@ class Brand extends  Controller{
     public function do_add()
     {
         $post = input();
+        // 获取表单上传文件 例如上传了001.jpg
+        if($_FILES['brand_img']['error'] != 0){
+            $this->error('图片错误');
+        }
+        $file = request()->file('brand_img');
+        // 移动到框架应用根目录/uploads/ 目录下
+        $info = $file->move( './uploads/brand');
+        if($info){
+            $img_name = $info->getSaveName();
+        }else{
+           $this->error($file->getError());
+        }
         $shop_brand = new ShopBrand;
         $shop_brand->brand_name = $post['brand_name'];
         $shop_brand->add_time = time();
+        //brand\20191114\c5a488f96cfa1953bcce7740ed261e73.jpg
+        $shop_brand->brand_pic = "brand\\".$img_name;
         $result = $shop_brand->save();
         if($result){
             $this->success('成功','index');
