@@ -100,4 +100,18 @@ class Brand extends  Controller{
         }
 
     }
+
+    public function ajax_up()
+    {
+        $id = input('id');
+        $val = input('val');
+        $result = ShopBrand::where(['id'=>$id])->update([
+            'state'=>$val
+        ]);
+        if($result){
+            echo 1;
+        }else{
+            echo 0;
+        }
+    }
 }

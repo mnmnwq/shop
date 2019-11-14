@@ -54,6 +54,7 @@
                         <td width="5%" class="tdColor tdC">品牌名称</td>
                         <td width="5%" class="tdColor tdC">品牌图片</td>
                         <td width="5%" class="tdColor tdC">添加时间</td>
+                        <td width="20%" class="tdColor">状态</td>
                         <td width="10%" class="tdColor">操作</td>
                     </tr>
                     {foreach $brand_info as $v}
@@ -62,6 +63,16 @@
                         <td>{$v.brand_name}</td>
                         <td><img src="/uploads/{$v.brand_pic}" height="90" alt=""></td>
                         <td>{$v.add_time|date="Y-m-d H:i:s"}</td>
+                        <td>
+                            <!--判断显示的按钮-->
+                            {if $v.state == 1}
+                                <span>启用 </span>
+                                <button type="button" data-id="{$v.id}" class="btn">禁用</button>
+                                    {elseif $v.state == 0}
+                                        <span>禁用 </span>
+                                        <button type="button" data-id="{$v.id}" class="btn">启用</button>
+                            {/if}
+                        </td>
                         <td><a href="{:url('Brand/update','id='.$v.id)}">
                             <img class="operation" src="/static/admin/img/update.png">
                         </a>
@@ -95,6 +106,40 @@
 </body>
 
 <script type="text/javascript">
+    $(function(){
+        $('.btn').click(function(){
+            var id = $(this).attr('data-id'); //获取当前点击对象自定义属性
+            var _this = $(this);   //把当前的对象赋值给一个变量
+            var btn_content = _this.html(); //获取到当前对象标签的html内容
+            /*根据当前所点击的按钮作用给后台传相应的值 比如：禁用传0   ;   启用传1 */
+            if(btn_content == '启用'){ //如果当前标签html内容为启用给后台传1反之传0
+                var val = 1;
+            }else{
+                var val = 0;
+            }
+            $.ajax({
+                type: "POST",  //请求类型
+                url: "{:url('Brand/ajax_up')}", //请求链接
+                data: {id:id,val:val}, //请求参数
+                dataType:'text', //数据类型
+                success: function(result){
+                    //ajax操作请求成功执行此函数
+                    if(result == 1){ //后台操作成功 result=1 失败 result=0
+                        //修改按钮为禁用
+                        if(btn_content === '禁用'){
+                            _this.prev().html('禁用');
+                            _this.html('启用');
+                        }else{
+                            //启用返回
+                           _this.prev().html('启用');
+                            _this.html('禁用');
+                        }
+                    }
+
+                }
+            });
+        });
+    });
     // 广告弹出框
     $(".delban").click(function(){
         var brand_id = $(this).attr('data-id');
