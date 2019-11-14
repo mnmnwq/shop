@@ -111,6 +111,8 @@
 
     $('.conShow').on('click','.pagination a',function(){
         var url = $(this).prop('href');
+        var search_name = $('input[name=search_name]').val();
+        url = url + "&search_name=" + search_name;
         $.ajax({
             type: "POST",
             url: url,
