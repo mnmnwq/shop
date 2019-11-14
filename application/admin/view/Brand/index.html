@@ -21,25 +21,28 @@
         <!-- banner页面样式 -->
         <div class="connoisseur">
             <div class="conform">
-                <form>
+                <form method="get" action="{:url('Brand/index')}">
                     <div class="cfD">
-                        时间段：<input class="vinput" type="text" />&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
-                        <input class="vinput vpr" type="text" /> 审核状态： <label><input
-                            type="radio" name="styleshoice1" />&nbsp;待审核</label> <label><input
-                            type="radio" name="styleshoice1" />&nbsp;审核中</label> <label><input
-                            type="radio" name="styleshoice1" />&nbsp;已通过</label> <label class="lar"><input
-                            type="radio" name="styleshoice1" />&nbsp;未通过</label> <input
-                            type="checkbox" name="styleshoice1" />手动排序
+                        品牌名：<input class="vinput" type="text" name="search_name" placeholder="品牌" value="{$search_name}"/>
+                        &nbsp;&nbsp;&nbsp;&nbsp;
+                        <!--审核状态： <label>-->
+                        <!--<input-->
+                            <!--type="radio" name="styleshoice1" />&nbsp;待审核</label> <label><input-->
+                            <!--type="radio" name="styleshoice1" />&nbsp;审核中</label> <label><input-->
+                            <!--type="radio" name="styleshoice1" />&nbsp;已通过</label> <label class="lar"><input-->
+                            <!--type="radio" name="styleshoice1" />&nbsp;未通过</label> <input-->
+                            <!--type="checkbox" name="styleshoice1" />手动排序-->
+                        <button type="submit" class="button">搜索</button>
                     </div>
                     <div class="cfD">
-                        <select>
-                            <option>请选择节目类型</option>
-                            <option>开场歌舞</option>
-                            <option>歌曲</option>
-                            <option>器乐演奏</option>
-                        </select>
-                        <input class="addUser" type="text" placeholder="输入节目名称/参与人" />
-                        <button class="button">搜索</button>
+                        <!--<select>-->
+                            <!--<option>请选择节目类型</option>-->
+                            <!--<option>开场歌舞</option>-->
+                            <!--<option>歌曲</option>-->
+                            <!--<option>器乐演奏</option>-->
+                        <!--</select>-->
+                        <!--<input class="addUser" type="text" placeholder="输入节目名称/参与人" />-->
+                        <!--<button type="submit" class="button">搜索</button>-->
                     </div>
                 </form>
             </div>

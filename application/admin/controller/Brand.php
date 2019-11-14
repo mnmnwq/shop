@@ -11,10 +11,17 @@ use app\model\ShopBrand;
 use think\Controller;
 
 class Brand extends  Controller{
+
     public function index()
     {
-        $brand_info = ShopBrand::paginate(2);
-        return view('index',['brand_info'=>$brand_info]);
+        $where = [];
+        //empty() 数组是否为空  isset()判断变量是否存在
+        $search_name = input('search_name');
+        if($search_name){
+            $where[] = ['brand_name','like','%'.$search_name.'%'];
+        }
+        $brand_info = ShopBrand::where($where)->paginate(2,false,['query'=>input()]);
+        return view('index',['brand_info'=>$brand_info,'search_name'=>$search_name]);
     }
 
     public function update()
