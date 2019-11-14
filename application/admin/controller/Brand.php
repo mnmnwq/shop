@@ -13,8 +13,12 @@ use think\Controller;
 class Brand extends  Controller{
     public function index()
     {
-        $post = input();
-        $brand_info = ShopBrand::paginate(2);
+        $where = [];
+        $search_name = input('search_name');
+        if($search_name){
+            $where[] = ['brand_name','like',"%$search_name%"];
+        }
+        $brand_info = ShopBrand::where($where)->paginate(2);
         if(request()->isAjax()){
             return view('ajax_page',['brand_info'=>$brand_info]);
         }

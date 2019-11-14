@@ -20,25 +20,26 @@
         <!-- banner页面样式 -->
         <div class="connoisseur">
             <div class="conform">
-                <form action="" >
+                <form  >
                     <div class="cfD">
-                        时间段：<input class="vinput" type="text" />&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
-                        <input class="vinput vpr" type="text" /> 审核状态： <label><input
-                            type="radio" name="styleshoice1" />&nbsp;待审核</label> <label><input
-                            type="radio" name="styleshoice1" />&nbsp;审核中</label> <label><input
-                            type="radio" name="styleshoice1" />&nbsp;已通过</label> <label class="lar"><input
-                            type="radio" name="styleshoice1" />&nbsp;未通过</label> <input
-                            type="checkbox" name="styleshoice1" />手动排序
+                        时间段：<input class="vinput" type="text" name="search_name"/>&nbsp;&nbsp;&nbsp;
+                        <!--<input class="vinput vpr" type="text" /> 审核状态： <label><input-->
+                            <!--type="radio" name="styleshoice1" />&nbsp;待审核</label> <label><input-->
+                            <!--type="radio" name="styleshoice1" />&nbsp;审核中</label> <label><input-->
+                            <!--type="radio" name="styleshoice1" />&nbsp;已通过</label> <label class="lar"><input-->
+                            <!--type="radio" name="styleshoice1" />&nbsp;未通过</label> <input-->
+                            <!--type="checkbox" name="styleshoice1" />手动排序-->
+                        <button type="button" class="button" id="search">搜索</button>
                     </div>
                     <div class="cfD">
-                        <select>
-                            <option>请选择节目类型</option>
-                            <option>开场歌舞</option>
-                            <option>歌曲</option>
-                            <option>器乐演奏</option>
-                        </select>
-                        <input class="addUser" type="text" placeholder="输入节目名称/参与人" />
-                        <button class="button">搜索</button>
+                        <!--<select>-->
+                            <!--<option>请选择节目类型</option>-->
+                            <!--<option>开场歌舞</option>-->
+                            <!--<option>歌曲</option>-->
+                            <!--<option>器乐演奏</option>-->
+                        <!--</select>-->
+                        <!--<input class="addUser" type="text" placeholder="输入节目名称/参与人" />-->
+                        <!--<button class="button">搜索</button>-->
                     </div>
                 </form>
             </div>
@@ -90,23 +91,41 @@
 
 <script type="text/javascript">
     // 广告弹出框
-    $(".delban").click(function(){
-        var brand_id = $(this).attr('data-id');
-        $('#confirm').prop('href',"{:url('Brand/del')}?id="+brand_id);
-        $(".banDel").show();
-    });
-    $('.pagination a').click(function(){
-        var url = $(this).prop('herf');
+    $('#search').click(function(){
+        var search_name = $('input[name=search_name]').val();
         $.ajax({
             type: "POST",
-            url: url,
-            data: "",
+            url: "{:url('Brand/index')}",
+            data: {search_name:search_name},
             success: function(result){
                 $('.conShow').html(result);
             }
         });
         return false;
     });
+    $(".delban").click(function(){
+        var brand_id = $(this).attr('data-id');
+        $('#confirm').prop('href',"{:url('Brand/del')}?id="+brand_id);
+        $(".banDel").show();
+    });
+
+    $('.conShow').on('click','.pagination a',function(){
+        var url = $(this).prop('href');
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: "",
+            success: function(result){
+                $('.conShow').html(result);
+                return false;
+            }
+        });
+        return false;
+    });
+
+
+
+
     $(".close").click(function(){
         $(".banDel").hide();
     });
