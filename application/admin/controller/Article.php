@@ -17,8 +17,9 @@ class Article extends Controller{
 
     public function add()
     {
-        $cate = ArticleCate::select();
-        return view('add');
+        $cate_info = ArticleCate::select();
+        $cate = createTree($cate_info);
+        return view('add',['cate'=>$cate]);
     }
 
     public function do_add()
