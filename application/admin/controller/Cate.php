@@ -8,24 +8,24 @@
  */
 namespace app\admin\controller;
 
-use app\model\ShopCate;
+use app\model\ArticleCate;
 use think\Controller;
 
 class Cate extends Controller{
 
     public function index(){
-        $cate_info = ShopCate::select();
+        $cate_info = ArticleCate::select();
         $result = createTree($cate_info);
         return view('index',['cate'=>$result]);
     }
 
     public function del(){
         $post = input();
-        $node_num = ShopCate::where('pid',$post['id'])->count();
+        $node_num = ArticleCate::where('pid',$post['id'])->count();
         if($node_num >0){
             $this->error('不能删除');
         }
-        $result = ShopCate::where('id','=',$post['id'])->delete();
+        $result = ArticleCate::where('id','=',$post['id'])->delete();
         if($result){
             $this->success('成功');
         }else{
@@ -35,15 +35,15 @@ class Cate extends Controller{
 
     public function update(){
         $post = input();
-        $info = ShopCate::where('id',$post['id'])->find(); //要修改的数据
-        $cate_info = ShopCate::select();
+        $info = ArticleCate::where('id',$post['id'])->find(); //要修改的数据
+        $cate_info = ArticleCate::select();
         $result = createTree($cate_info);
         return view('update',['info'=>$info,'cate'=>$result]);
     }
 
     public function do_update(){
         $post = input();
-        $result = ShopCate::where('id',$post['id'])->update([
+        $result = ArticleCate::where('id',$post['id'])->update([
             'cate_name'=>$post['cate_name'],
             'pid'=>$post['pid']
         ]);
@@ -59,7 +59,7 @@ class Cate extends Controller{
      */
     public function add()
     {
-        $cate_info = ShopCate::select();
+        $cate_info = ArticleCate::select();
         $result = createTree($cate_info);
         return view('add',['cate'=>$result]);
     }
@@ -70,7 +70,7 @@ class Cate extends Controller{
     public function do_add()
     {
         $post = input();
-        $shop_cate = new ShopCate;
+        $shop_cate = new ArticleCate;
         $shop_cate->cate_name = $post['cate_name'];
         $shop_cate->pid = $post['pid'];
         $shop_cate->add_time = time();

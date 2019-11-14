@@ -6,16 +6,18 @@
  * Time: 12:54
  */
 namespace app\admin\controller;
+use app\model\ArticleCate;
 use think\Controller;
 
 class Article extends Controller{
     public function index()
     {
-        
+        return view();
     }
 
     public function add()
     {
+        $cate = ArticleCate::select();
         return view('add');
     }
 
