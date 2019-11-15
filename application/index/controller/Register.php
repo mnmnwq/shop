@@ -9,5 +9,11 @@ namespace app\index\controller;
 use think\Controller;
 
 class Register extends Controller{
-
+    /**
+     * 注册操作
+     */
+    public function register()
+    {
+        return view('register');
+    }
 }
