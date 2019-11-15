@@ -32,7 +32,7 @@
                             <!--type="radio" name="styleshoice1" />&nbsp;已通过</label> <label class="lar"><input-->
                             <!--type="radio" name="styleshoice1" />&nbsp;未通过</label> <input-->
                             <!--type="checkbox" name="styleshoice1" />手动排序-->
-                        <button type="submit" class="button">搜索</button>
+                        <button type="button" class="button" id="search">搜索</button>
                     </div>
                     <div class="cfD">
                         <!--<select>-->
@@ -68,9 +68,9 @@
                             {if $v.state == 1}
                                 <span>启用 </span>
                                 <button type="button" data-id="{$v.id}" class="btn">禁用</button>
-                                    {elseif $v.state == 0}
-                                        <span>禁用 </span>
-                                        <button type="button" data-id="{$v.id}" class="btn">启用</button>
+                            {elseif $v.state == 0}
+                                <span>禁用 </span>
+                                <button type="button" data-id="{$v.id}" class="btn">启用</button>
                             {/if}
                         </td>
                         <td><a href="{:url('Brand/update','id='.$v.id)}">
@@ -140,6 +140,38 @@
             });
         });
     });
+
+    $('#search').click(function(){
+        var val = $('input[name=search_name]').val();
+        $.ajax({
+                type: "GET",  //请求类型
+                url: '{:url('Brand/index')}', //请求链接
+                data: {search_name:val}, //请求参数
+                dataType:'text', //数据类型
+                success: function(result){
+                    $('.conShow').html(result); //把中间页所有html替换表格和分页
+                }
+            });
+        //return false;
+    });
+
+    /*动态绑定*/
+    $('.conShow').on('click','.pagination a',function(){
+        var url = $(this).prop('href');  //a标签请求路径
+         $.ajax({
+                type: "GET",  //请求类型
+                url: url, //请求链接
+                data: {}, //请求参数
+                dataType:'text', //数据类型
+                success: function(result){
+                    $('.conShow').html(result); //把中间页所有html替换表格和分页
+                }
+            });
+         return false; //卡住a标签请求,页面静止
+    });
+
+
+
     // 广告弹出框
     $(".delban").click(function(){
         var brand_id = $(this).attr('data-id');

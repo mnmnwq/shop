@@ -26,6 +26,9 @@ class Brand extends  Controller{
                 $v['brand_pic'] = '/brand/default.jpg';
             }
         }
+        if(request()->isAjax()){
+            return view('ajax_page',['brand_info'=>$brand_info,'search_name'=>$search_name]);
+        }
         return view('index',['brand_info'=>$brand_info,'search_name'=>$search_name]);
     }
 
@@ -108,7 +111,7 @@ class Brand extends  Controller{
         $result = ShopBrand::where(['id'=>$id])->update([
             'state'=>$val
         ]);
-        if($result){
+        if($result ){
             echo 1;
         }else{
             echo 0;
