@@ -20,7 +20,7 @@ class Brand extends  Controller{
         if($search_name){
             $where[] = ['brand_name','like','%'.$search_name.'%'];
         }
-        $brand_info = ShopBrand::where($where)->paginate(2,false,['query'=>input()]);
+        $brand_info = ShopBrand::where($where)->paginate(5,false,['query'=>input()]);
         foreach ($brand_info as $v){
             if($v['brand_pic'] == '0'){
                 $v['brand_pic'] = '/brand/default.jpg';
