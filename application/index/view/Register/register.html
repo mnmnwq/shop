@@ -32,13 +32,13 @@
                     </tr>
                     <tr height="50">
                         <td align="right"><font color="#ff4e00">*</font>&nbsp;邮箱 &nbsp;</td>
-                        <td><input type="text" value="" class="l_email" /></td>
+                        <td><input type="text" value="" name="user_email" class="l_email" /></td>
                     </tr>
                     <tr height="50">
                         <td align="right"> <font color="#ff4e00">*</font>&nbsp;验证码 &nbsp;</td>
                         <td>
                             <input type="text" value="" class="l_ipt" />
-                            <a href="javascript:void(0)" style="font-size:12px; font-family:'宋体';">发送验证码</a>
+                            <a href="javascript:void(0)" style="font-size:12px; font-family:'宋体';" id="send_btn">发送验证码</a>
                         </td>
                     </tr>
                     <tr height="60">
@@ -55,6 +55,27 @@
 {block name="script"}
     <script>
         $(function(){
+            var email_str = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
+            $('#send_btn').click(function(){
+                var email = $('input[name=user_email]').val();
+                if(!email_str.test(email)){
+                    alert('请输入正确邮箱');
+                    return false;
+                }
+                $.ajax({
+                    type: "POST",
+                    url: "{:url('Register/send_email')}",
+                    data: "{email:email}",
+                    dataType:'text',
+                    success: function(result){
+                        if(result == 0){
+                            alert('发送失败');
+                        }else{
+                            alert('发送成功');
+                        }
+                    }
+                });
+            });
         });
     </script>
 {/block}
