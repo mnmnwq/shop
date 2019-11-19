@@ -8,9 +8,8 @@
 namespace app\admin\controller;
 
 use app\model\ShopBrand;
-use think\Controller;
 
-class Brand extends  Controller{
+class Brand extends  Common{
 
     public function index()
     {

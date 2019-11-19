@@ -9,9 +9,8 @@
 namespace app\admin\controller;
 
 use app\model\ShopCate;
-use think\Controller;
 
-class Cate extends Controller{
+class Cate extends Common{
 
     public function index(){
         $cate_info = ShopCate::select();
