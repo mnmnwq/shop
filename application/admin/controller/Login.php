@@ -6,10 +6,10 @@
  * Time: 16:37
  */
 namespace app\admin\controller;
-
-use think\Controller;
 use app\model\ShopAdmin;
-class Login extends Controller{
+use think\Controller;
+
+class Login extends Controller {
     public function index()
     {
         return view('index');

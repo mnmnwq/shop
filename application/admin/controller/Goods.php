@@ -1,15 +1,20 @@
 <?php
 namespace app\admin\controller;
-use think\Controller;
 use app\model\ShopBrand;
 use app\model\ShopCate;
 use app\model\ShopGoods;
-class Goods extends Controller{
+class Goods extends Common{
 	/**
 	 * 商品主页
 	 * @return [type] [description]
 	 */
-	public function index(){}
+	public function index(){
+	    $goods_info = ShopGoods::leftJoin('shop_cate','shop_cate.id=shop_goods.cate_id')
+            ->leftJoin('shop_brand','shop_brand.id=shop_goods.brand_id')
+            ->paginate(5);
+	    return view('index',['goods_info'=>$goods_info]);
+    }
+
 	/**
 	 * 添加商品
 	 */

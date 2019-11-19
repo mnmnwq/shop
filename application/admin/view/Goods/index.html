@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>约见管理-有点</title>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/css.css" />
+    <script type="text/javascript" src="/static/admin/js/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="js/page.js" ></script> -->
+</head>
+
+<body>
+<div id="pageAll">
+    <div class="pageTop">
+        <div class="page">
+            <img src="/static/admin/img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
+                href="#">公共管理</a>&nbsp;-</span>&nbsp;节目管理
+        </div>
+    </div>
+
+    <div class="page">
+        <!-- banner页面样式 -->
+        <div class="connoisseur">
+            <div class="conform">
+                <form>
+                    <div class="cfD">
+                        时间段：<input class="vinput" type="text" />&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+                        <input class="vinput vpr" type="text" /> 审核状态： <label><input
+                            type="radio" name="styleshoice1" />&nbsp;待审核</label> <label><input
+                            type="radio" name="styleshoice1" />&nbsp;审核中</label> <label><input
+                            type="radio" name="styleshoice1" />&nbsp;已通过</label> <label class="lar"><input
+                            type="radio" name="styleshoice1" />&nbsp;未通过</label> <input
+                            type="checkbox" name="styleshoice1" />手动排序
+                    </div>
+                    <div class="cfD">
+                        <select>
+                            <option>请选择节目类型</option>
+                            <option>开场歌舞</option>
+                            <option>歌曲</option>
+                            <option>器乐演奏</option>
+                        </select>
+                        <input class="addUser" type="text" placeholder="输入节目名称/参与人" />
+                        <button class="button">搜索</button>
+                    </div>
+                </form>
+            </div>
+            <!-- banner 表格 显示 -->
+            <div class="conShow">
+                <table width="100%" border="1" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="5%" class="tdColor tdC">ID</td>
+                        <td width="10%" class="tdColor tdC">商品名称</td>
+                        <td width="5%" class="tdColor">商品价格</td>
+                        <td width="20%" class="tdColor">商品图片</td>
+                        <td width="20%" class="tdColor">是否上架</td>
+                        <td width="20%" class="tdColor">是否最新</td>
+                        <td width="20%" class="tdColor">是否热门</td>
+                        <td width="15%" class="tdColor">添加时间</td>
+                        <td width="10%" class="tdColor">操作</td>
+                    </tr>
+                    {foreach $goods_info as $v}
+                    <tr>
+                        <td>{$v.id}</td>
+                        <td>{$v.goods_name}</td>
+                        <td>
+                            {}
+                        </td>
+                        <td><img src="{$v.goods_pic}" height="100" alt=""></td>
+                        <td>{if $v.is_up==1}是{else}否{/if}</td>
+                        <td>通过</td>
+                        <td>2019/8/1 10:12-11:30</td>
+                        <td>
+                            <a href="add.html">
+                                <img class="operation" src="/static/admin/img/update.png">
+                            </a>
+                            <img class="operation delban" src="/static/admin/img/delete.png">
+                        </td>
+                    </tr>
+                    {/foreach}
+                </table>
+                <div class="paging">此处是分页</div>
+            </div>
+            <!-- banner 表格 显示 end-->
+        </div>
+        <!-- banner页面样式end -->
+    </div>
+
+</div>
+
+
+<!-- 删除弹出框 -->
+<div class="banDel">
+    <div class="delete">
+        <div class="close">
+            <a><img src="img/shanchu.png" /></a>
+        </div>
+        <p class="delP1">你确定要删除此条记录吗？</p>
+        <p class="delP2">
+            <a href="#" class="ok yes">确定</a><a class="ok no">取消</a>
+        </p>
+    </div>
+</div>
+<!-- 删除弹出框  end-->
+</body>
+
+<script type="text/javascript">
+    // 广告弹出框
+    $(".delban").click(function(){
+        $(".banDel").show();
+    });
+    $(".close").click(function(){
+        $(".banDel").hide();
+    });
+    $(".no").click(function(){
+        $(".banDel").hide();
+    });
+    // 广告弹出框 end
+</script>
+</html>
