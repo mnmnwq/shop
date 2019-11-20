@@ -1,0 +1,62 @@
+{extend name="layout/layout"/}
+
+{block name="title"}三级联动{/block}
+{block name="body"}
+<div id="div_test">
+	省：<select name="province">
+		<option>--请选择--</option>
+		{foreach $info as $v}
+			<option value="{$v.id}">{$v.name}</option>
+		{/foreach}
+	</select>
+</div>
+	
+		
+{/block}
+{block name="foot"}{/block}
+{block name="script"}
+<script type="text/javascript">
+	$(function(){
+		$('#div_test').on('change','select[name=province]',function(){
+			var pid = $(this).val();
+			var _this = $(this);
+			$.ajax({
+				type:'post',
+				url:'{:url('Area/get_ajax')}',
+				data:{pid:pid},
+				dataType:'json',
+				success:function(result){
+					str = '<span>&nbsp;&nbsp;市：	<select name="city"><option>--请选择--</option>';
+					//遍历返回值（js的数组）
+					for(var i=0;i<result.length;i++){
+						str += '<option value="'+result[i]['id']+'">'+result[i]['name']+'</option>'
+					}
+					str += '</select></span>';
+					_this.nextAll().remove();
+					_this.after(str);
+				}
+			});
+		});
+		$('#div_test').on('change','select[name=city]',function(){
+			var pid = $(this).val();
+			var _this = $(this);
+			$.ajax({
+				type:'post',
+				url:'{:url('Area/get_ajax')}',
+				data:{pid:pid},
+				dataType:'json',
+				success:function(result){
+					str = '<span>&nbsp;&nbsp;区：	<select name="area"><option>--请选择--</option>';
+					//遍历返回值（js的数组）
+					for(var i=0;i<result.length;i++){
+						str += '<option value="'+result[i]['id']+'">'+result[i]['name']+'</option>'
+					}
+					str += '</select></span>';
+					_this.nextAll().remove();
+					_this.after(str);
+				}
+			});
+		});
+	});
+</script>
+{/block}
