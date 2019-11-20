@@ -1,0 +1,31 @@
+{extend name="layout/layout"}
+
+{block name="title"}
+学生管理
+{/block}
+
+{block name="body"}
+
+	<center>
+		<h1>学生管理系统</h1>
+		<table border="1">
+			<tr>
+				<td>id</td>
+				<td>用户名</td>
+				<td>年龄</td>
+			</tr>
+			{foreach $info as $v}
+			<tr>
+				<td>{$v.id}</td>
+				<td>{$v.username}</td>
+				<td>{$v.age}</td>
+			</tr>
+			{/foreach}
+		</table>
+	</center>
+	
+{/block}
+
+{block name="foot"}
+<h2>我是脚</h2>
+{/block}
