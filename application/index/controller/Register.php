@@ -26,15 +26,28 @@ class Register extends Controller{
 
     public function send_phone()
     {
-        echo config('app.app_name');
-        //$app_id = 'LTAI4FwKhyqEasPmf2w1HdFP';
-        //$app_script = 'tmtk6d1ga4sa4BAvRXHFG7brjuK52b';
+        $app_id = 'LTAI4FwKhyqEasPmf2w1HdFP';
+        $app_script = 'tmtk6d1ga4sa4BAvRXHFG7brjuK52b';
         // 配置信息
-//        $config = [
-//            'app_key'    => $app_id,
-//            'app_secret' => $app_script,
-//            // 'sandbox'    => true,  // 是否为沙箱环境，默认false
-//        ];
+        $config = [
+            'app_key'    => $app_id,
+            'app_secret' => $app_script,
+            // 'sandbox'    => true,  // 是否为沙箱环境，默认false
+        ];
+        //SMS_177543911
+        // 使用方法一
+        $client = new Client(new App($config));
+        $req    = new AlibabaAliqinFcSmsNumSend;
+
+        $req->setRecNum('15022673955')
+            ->setSmsParam([
+                'code' => rand(100000, 999999)
+            ])
+            ->setSmsFreeSignName('验证码')
+            ->setSmsTemplateCode('SMS_177543911');
+
+        $resp = $client->execute($req);
+        dump($resp);
     }
 
     /**
