@@ -54,6 +54,7 @@
     $(function(){
         $('select[name=city]').change(function(){
             var next_pid = $(this).val();
+            $(this).nextAll().remove();
             var _this = $(this);
             $.ajax({
                 type:'post',
@@ -61,11 +62,11 @@
                 data:{'pid':next_pid},
                 dataType:'json',
                 success:function(result){
-                    var str = '&nbsp;&nbsp;省：&nbsp;&nbsp;&nbsp;<select name="province"><option>--请选择--</option>';
+                    var str = '<span>&nbsp;&nbsp;省：&nbsp;&nbsp;&nbsp;<select name="province"><option>--请选择--</option>';
                     for(var i=0;i < result.length;i++){
                         str += '<option value="'+result[i].id+'">'+result[i].name+'</option>';
                     }
-                    str += '</select>';
+                    str += '</select></span>';
                     _this.after(str);
                 }
             });
@@ -79,11 +80,11 @@
                 data:{'pid':next_pid},
                 dataType:'json',
                 success:function(result){
-                    var str = '&nbsp;&nbsp;区：&nbsp;&nbsp;&nbsp;<select name="area"><option>--请选择--</option>';
+                    var str = '<span>&nbsp;&nbsp;区：&nbsp;&nbsp;&nbsp;<select name="area"><option>--请选择--</option>';
                     for(var i=0;i < result.length;i++){
                         str += '<option value="'+result[i].id+'">'+result[i].name+'</option>';
                     }
-                    str += '</select>';
+                    str += '</select></span>';
                     _this.after(str);
                 }
             });
