@@ -4,8 +4,48 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "be10a9b825d1a1ee6e45288381d9904b",
+    "content-hash": "6fc6e64894efcbf59c7fda35f79bf234",
     "packages": [
+        {
+            "name": "flc/alidayu",
+            "version": "v2.0.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/flc1125/alidayu.git",
+                "reference": "8132041a56c6d2d9044bc70c828cec5426954204"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/flc1125/alidayu/zipball/8132041a56c6d2d9044bc70c828cec5426954204",
+                "reference": "8132041a56c6d2d9044bc70c828cec5426954204",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Flc\\Alidayu\\": "src/Alidayu/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "阿里大于(鱼)API-SDK；适用任何PHP项目，包括Laravel、Yii、Thinkphp等...",
+            "keywords": [
+                "alidayu",
+                "flc"
+            ],
+            "time": "2019-04-05T16:42:01+00:00"
+        },
         {
             "name": "phpmailer/phpmailer",
             "version": "v6.1.2",

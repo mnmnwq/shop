@@ -10,6 +10,10 @@ use think\Controller;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
+use Flc\Alidayu\Client;
+use Flc\Alidayu\App;
+use Flc\Alidayu\Requests\AlibabaAliqinFcSmsNumSend;
+use Flc\Alidayu\Requests\IRequest;
 
 class Register extends Controller{
     /**
@@ -18,6 +22,18 @@ class Register extends Controller{
     public function register()
     {
         return view('register');
+    }
+
+    public function send_phone()
+    {
+        $app_id = 'LTAI4FwKhyqEasPmf2w1HdFP';
+        $app_script = 'tmtk6d1ga4sa4BAvRXHFG7brjuK52b';
+        // 配置信息
+        $config = [
+            'app_key'    => $app_id,
+            'app_secret' => $app_script,
+            // 'sandbox'    => true,  // 是否为沙箱环境，默认false
+        ];
     }
 
     /**
