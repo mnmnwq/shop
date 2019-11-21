@@ -28,26 +28,17 @@ class Register extends Controller{
     {
         $app_id = 'LTAI4FwKhyqEasPmf2w1HdFP';
         $app_script = 'tmtk6d1ga4sa4BAvRXHFG7brjuK52b';
-        // 配置信息
         $config = [
-            'app_key'    => $app_id,
-            'app_secret' => $app_script,
-             'sandbox'    => true,  // 是否为沙箱环境，默认false
+            'key_id' => $app_id, // AccessKeyId
+            'key_secret' => $app_script,
+            'sign_name' => 'signmnmnwq',//签名名称
+            'code' => 'SMS_177543911',//模板CODE
         ];
-        //SMS_177543911
-        // 使用方法一
-        $client = new Client(new App($config));
-        $req    = new AlibabaAliqinFcSmsNumSend;
-
-        $req->setRecNum('15022673955')
-            ->setSmsParam([
-                'code' => rand(100000, 999999)
-            ])
-            ->setSmsFreeSignName('signmnmnwq')
-            ->setSmsTemplateCode('SMS_177543911');
-
-        $resp = $client->execute($req);
-        dump($resp);
+        $send = new \Aliyun\Send($config);
+        $data = [
+            'code' => 123456
+        ];
+        $send->sendSms('15022673955',$data);
     }
 
     /**

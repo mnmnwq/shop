@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6fc6e64894efcbf59c7fda35f79bf234",
+    "content-hash": "d600db2cc17d3b720f8485f05261dfac",
     "packages": [
         {
             "name": "flc/alidayu",
@@ -21,7 +21,7 @@
                 "shasum": "",
                 "mirrors": [
                     {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "url": "https://packagist.oss-cn-beijing.aliyuncs.com/dists/%package%/%reference%.%type%",
                         "preferred": true
                     }
                 ]
@@ -47,6 +47,54 @@
             "time": "2019-04-05T16:42:01+00:00"
         },
         {
+            "name": "hao/alidayu",
+            "version": "1.04",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/JZhao1020/alidayu.git",
+                "reference": "df2d55916d2204a11e6494352bec966fea001445"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/JZhao1020/alidayu/zipball/df2d55916d2204a11e6494352bec966fea001445",
+                "reference": "df2d55916d2204a11e6494352bec966fea001445",
+                "shasum": "",
+                "mirrors": [
+                    {
+                        "url": "https://packagist.oss-cn-beijing.aliyuncs.com/dists/%package%/%reference%.%type%",
+                        "preferred": true
+                    }
+                ]
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-openssl": "*",
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Aliyun\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "hao",
+                    "email": "18816784184@163.com"
+                }
+            ],
+            "description": "阿里大鱼短信平台",
+            "homepage": "https://github.com/JZhao1020/alidayu",
+            "keywords": [
+                "alidayu"
+            ],
+            "time": "2018-05-31T07:43:51+00:00"
+        },
+        {
             "name": "phpmailer/phpmailer",
             "version": "v6.1.2",
             "source": {
@@ -61,7 +109,7 @@
                 "shasum": "",
                 "mirrors": [
                     {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "url": "https://packagist.oss-cn-beijing.aliyuncs.com/dists/%package%/%reference%.%type%",
                         "preferred": true
                     }
                 ]
@@ -133,7 +181,7 @@
                 "shasum": "",
                 "mirrors": [
                     {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "url": "https://packagist.oss-cn-beijing.aliyuncs.com/dists/%package%/%reference%.%type%",
                         "preferred": true
                     }
                 ]
@@ -190,7 +238,7 @@
                 "shasum": "",
                 "mirrors": [
                     {
-                        "url": "https://mirrors.aliyun.com/composer/dists/%package%/%reference%.%type%",
+                        "url": "https://packagist.oss-cn-beijing.aliyuncs.com/dists/%package%/%reference%.%type%",
                         "preferred": true
                     }
                 ]

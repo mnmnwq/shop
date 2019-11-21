@@ -19,7 +19,8 @@
         "php": ">=5.6.0",
         "topthink/framework": "5.1.*",
         "phpmailer/phpmailer": "^6.1",
-        "flc/alidayu": "^2.0"
+        "flc/alidayu": "^2.0",
+        "hao/alidayu": "^1.04"
     },
     "autoload": {
         "psr-4": {
