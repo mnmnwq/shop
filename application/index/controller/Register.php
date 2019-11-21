@@ -32,7 +32,7 @@ class Register extends Controller{
         $config = [
             'app_key'    => $app_id,
             'app_secret' => $app_script,
-            // 'sandbox'    => true,  // 是否为沙箱环境，默认false
+             'sandbox'    => true,  // 是否为沙箱环境，默认false
         ];
         //SMS_177543911
         // 使用方法一
@@ -43,7 +43,7 @@ class Register extends Controller{
             ->setSmsParam([
                 'code' => rand(100000, 999999)
             ])
-            ->setSmsFreeSignName('验证码')
+            ->setSmsFreeSignName('signmnmnwq')
             ->setSmsTemplateCode('SMS_177543911');
 
         $resp = $client->execute($req);
