@@ -17,7 +17,8 @@
 {block name="script"}
 <script type="text/javascript">
 	$(function(){
-		$('#div_test').on('change','select[name=province]',function(){
+		$('select[name=province]').change(function(){
+
 			var pid = $(this).val();
 			var _this = $(this);
 			$.ajax({
@@ -26,10 +27,12 @@
 				data:{pid:pid},
 				dataType:'json',
 				success:function(result){
-					str = '<span>&nbsp;&nbsp;市：	<select name="city"><option>--请选择--</option>';
+					//js 获取数组元素个数
+					//console.log(result.length);
+					var str = '<span>&nbsp;&nbsp;市：	<select name="city"><option>--请选择--</option>';
 					//遍历返回值（js的数组）
-					for(var i=0;i<result.length;i++){
-						str += '<option value="'+result[i]['id']+'">'+result[i]['name']+'</option>'
+					for(i=0;i<result.length;i++){
+						str = str + '<option value="'+result[i]['id']+'">'+result[i]['name']+'</option>'
 					}
 					str += '</select></span>';
 					_this.nextAll().remove();
@@ -37,6 +40,7 @@
 				}
 			});
 		});
+		//动态绑定
 		$('#div_test').on('change','select[name=city]',function(){
 			var pid = $(this).val();
 			var _this = $(this);
