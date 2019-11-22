@@ -17,6 +17,7 @@
 {block name="script"}
 <script type="text/javascript">
 	$(function(){
+
 		$('select[name=province]').change(function(){
 
 			var pid = $(this).val();
@@ -32,8 +33,10 @@
 					var str = '<span>&nbsp;&nbsp;市：	<select name="city"><option>--请选择--</option>';
 					//遍历返回值（js的数组）
 					for(i=0;i<result.length;i++){
+						
 						str = str + '<option value="'+result[i]['id']+'">'+result[i]['name']+'</option>'
 					}
+
 					str += '</select></span>';
 					_this.nextAll().remove();
 					_this.after(str);

@@ -1,0 +1,15 @@
+<table border="1">
+            <tr>
+                <td>id</td>
+                <td>用户名</td>
+                <td>年龄</td>
+            </tr>
+            {foreach $info as $v}
+            <tr>
+                <td>{$v.id}</td>
+                <td>{$v.username}</td>
+                <td>{$v.age}</td>
+            </tr>
+            {/foreach}
+        </table>
+        {$info|raw}
