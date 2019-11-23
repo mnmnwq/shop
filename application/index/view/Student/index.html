@@ -6,7 +6,28 @@
 </head>
 <body>
     <div id="div_test">
-        <table></table>
+        <h2>学生管理</h2>
+        <br/>
+        <a href="{:url('Student/add')}">添加</a>
+        <br/><br/>
+        <table border="1">
+            <tr>
+                <td>用户名</td>
+                <td>用户图片</td>
+                <td>相册</td>
+                <td>操作</td>
+            </tr>
+            {foreach $info as $v}
+            <tr>
+                <td>{$v.username}</td>
+                <td></td>
+                <td></td>
+                <td>
+                    <a href="{:url('Student/update','id'.$v.id)}">修改</a>
+                </td>
+            </tr>
+            {/foreach}
+        </table>
     </div>
 
 </body>
