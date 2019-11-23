@@ -5,15 +5,33 @@
 </head>
 <body>
 
-<form action="{:url('Register/do_register')}" method="post">
-    用户名：<input type="" name=""><br/>
-    密码：<input type="" name=""><br/>
-    确认密码： <input type="" name=""><br/>
-    邮箱：<input type="" name=""><br/>
-    邮箱验证码： <input type="" name=""><br/>
+<form id="myForm" method="">
+    用户名：<input type="text" name="username"><br/>
+    密码：<input type="password" name="user_pass"><br/>
+    确认密码： <input type="password" name="re_pass"><br/>
+    邮箱：<input type="text" name="email"><br/>
+    邮箱验证码： <input type="text" name="email_code"><br/>
     <input type="submit" name="" value="提交">
 </form>
 
 <script type="text/javascript" src="/static/jquery.min.js"></script>
+<script>
+    $(function(){
+        $('input[name=username]').blur(function(){
+            var username = $(this).val();
+            $.ajax({
+                url:"{:url('Register/is_repeat')}",
+                type:'post',
+                data:{username:username},
+                dataType:'json',
+                success:function(result){}
+            });
+        });
+        $("#myForm").submit(function(){
+            var username = $('input[name=username]').val();
+            var pass = $('input[name=password]').val();
+        });
+    });
+</script>
 </body>
 </html>

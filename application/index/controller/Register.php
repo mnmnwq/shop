@@ -19,9 +19,16 @@ class Register extends Controller{
     /**
      * 注册操作
      */
-    public function register()
+    public function index()
     {
         return view('register');
+    }
+
+    /**
+     * 验证用户名是否重复
+     */
+    public function is_repeat(){
+
     }
 
     public function send_phone()
