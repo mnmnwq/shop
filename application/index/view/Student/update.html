@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<form action="{:url('Student/do_update')}" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="id" value="{$info.id}">
+    姓名：<input type="text" name="name" value="{$info.username}"><br/>
+    <img height="100" src="{$info.image}"><br/>
+    图片：<input type="file" name="image" value="{$info.image}"><br/>
+    <input type="submit" name="" value="提交">
+</form>
+</body>
+</html>

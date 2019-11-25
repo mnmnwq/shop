@@ -4,16 +4,43 @@
 	<title>注册</title>
 </head>
 <body>
-
-<form action="{:url('Register/do_register')}" method="post">
-	用户名：<input type="" name=""><br/>
+<h1>注册</h1>
+<form id="my_form" action="{:url('Register/do_register')}" method="post">
+	用户名：<input type="text" name="username"><br/>
 	密码：<input type="" name=""><br/>
 	确认密码： <input type="" name=""><br/>	
-	邮箱：<input type="" name=""><br/>
+	邮箱：<input type="" name=""><button type="button">发送邮箱验证码</button><br/>
 	邮箱验证码： <input type="" name=""><br/>
 	<input type="submit" name="" value="提交">
 </form>
 
 <script type="text/javascript" src="/static/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		//获取焦点 失去焦点
+		$('input[name=username]').blur(function(){
+			//
+			var username = $(this).val();
+			if(username == ''){
+				$(this).after('<span style="color:red;">用户名不能为空</span>');
+			}
+			$.ajax({
+				type:'post',
+				url:'{:url('Register/user_repeat')}',
+				data:{username:username},
+				dataType:'json',
+				success:function(result){
+					if(result.errno == 0){
+						alert(result.msg);
+					}
+				}
+			});
+		});
+		
+		$('#my_form').submit(function(){
+			//return false;
+		});
+	});
+</script>
 </body>
 </html>

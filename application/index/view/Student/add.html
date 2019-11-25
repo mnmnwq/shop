@@ -6,8 +6,28 @@
 <body>
 	<form action="{:url('Student/do_add')}" method="post" enctype="multipart/form-data">
 		姓名：<input type="text" name="name"><br/>
-		图片：<input type="file" name="image"><br/>
+		相册： <br/>
+		<button type="button" id="add_btn">添加</button><br/>
+		
+		<div id="div_test">
+			<input type="file" name="images[]"><button type="button" class="del_btn">删除</button><br/>
+		</div>
+		
+		<br/>
 		<input type="submit" name="" value="提交">
 	</form>
+	<script type="text/javascript" src="/static/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#add_btn').click(function(){
+				$('#div_test').append('<input type="file" name="images[]"><button type="button" class="del_btn">删除</button><br/>');	
+			});
+			$('#div_test').on('click','.del_btn',function(){
+				$(this).prev().remove();
+				$(this).next().remove();
+				$(this).remove();
+			});
+		});
+	</script>
 </body>
 </html>
