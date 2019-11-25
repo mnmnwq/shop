@@ -10,10 +10,7 @@ use think\Controller;
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-use Flc\Alidayu\Client;
-use Flc\Alidayu\App;
-use Flc\Alidayu\Requests\AlibabaAliqinFcSmsNumSend;
-use Flc\Alidayu\Requests\IRequest;
+
 
 class Register extends Controller{
     /**
@@ -33,8 +30,8 @@ class Register extends Controller{
 
     public function send_phone()
     {
-        $app_id = 'LTAI4FwKhyqEasPmf2w1HdFP';
-        $app_script = 'tmtk6d1ga4sa4BAvRXHFG7brjuK52b';
+        $app_id = '';
+        $app_script = '';
         $config = [
             'key_id' => $app_id, // AccessKeyId
             'key_secret' => $app_script,
@@ -71,7 +68,7 @@ class Register extends Controller{
 
             //Recipients
             $mail->setFrom('mnmnwq@163.com', 'mnmnwq'); //发送者名称
-            $mail->addAddress('mn2er123@163.com', 'mn2er123');     // 收件人名称
+            $mail->addAddress('mn2er123@163.com', '');     // 收件人名称
 
             // Content
             $mail->isHTML(true);                                  // Set email format to HTML
