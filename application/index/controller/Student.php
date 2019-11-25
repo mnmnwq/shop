@@ -32,6 +32,7 @@ class Student extends Controller{
                 $this->error('错误2');
             }
         }
+        //
         die();
         $file = request()->file('image');
         $files = request()->file('images');
@@ -39,7 +40,9 @@ class Student extends Controller{
 
     public function updata()
     {
-        
+        $id = input('id');
+        $info = ShopStudent::where(['id'=>$id])->find();
+        return view('update',['info'=>$info]);
     }
 
     public function do_update()
