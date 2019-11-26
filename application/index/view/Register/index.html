@@ -7,22 +7,41 @@
 <h1>注册</h1>
 <form id="my_form" action="{:url('Register/do_register')}" method="post">
 	用户名：<input type="text" name="username"><br/>
-	密码：<input type="" name=""><br/>
-	确认密码： <input type="" name=""><br/>	
-	邮箱：<input type="" name=""><button type="button">发送邮箱验证码</button><br/>
-	邮箱验证码： <input type="" name=""><br/>
+	密码：<input type="password" name="pass"><br/>
+	确认密码： <input type="password" name="re_pass"><br/>	
+	邮箱：<input type="text" name="email"><button type="button" id="send_btn">发送邮箱验证码</button><br/>
+	邮箱验证码： <input type="text" name="code"><br/>
 	<input type="submit" name="" value="提交">
 </form>
 
 <script type="text/javascript" src="/static/jquery.min.js"></script>
 <script type="text/javascript">
 	$(function(){
+		$('#send_btn').click(function(){
+			var email = $('input[name=email]').val();
+			$.ajax({
+				type:'post',
+				url:'{:url('Register/send_email')}',
+				data:{email:email},
+				dataType:'json',
+				success:function(result){
+					alert(result.msg);
+				}
+			});
+		});
+		//获取焦点
+		$('input[name=username]').focus(function(){
+			$(this).next('span').remove();
+		});
 		//获取焦点 失去焦点
+		
 		$('input[name=username]').blur(function(){
 			//
 			var username = $(this).val();
 			if(username == ''){
+				$(this).next('span').remove();
 				$(this).after('<span style="color:red;">用户名不能为空</span>');
+				return false;
 			}
 			$.ajax({
 				type:'post',
@@ -38,7 +57,25 @@
 		});
 		
 		$('#my_form').submit(function(){
-			//return false;
+			var username = $('input[name=username]').val();
+			var pass = $('input[name=pass]').val();
+			var re_pass = $('input[name=re_pass]').val();
+			var code = $('input[name=code]').val();
+			$.ajax({
+				type:'post',
+				url:'{:url('Register/do_register')}',
+				data:{username:username,pass:pass,re_pass:re_pass,code:code},
+				dataType:'json',
+				success:function(result){
+					if(result.errno == 0){
+						alert(result.msg);
+					}else if(result.errno == 200){
+						alert(result.msg);
+						window.location.href = "{:url('Student/index')}";
+					}
+				}
+			});
+			return false;
 		});
 	});
 </script>
