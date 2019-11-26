@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>增加</title>
+</head>
+<body>
+	<form enctype="multipart/form-data" action="{:url('Index/do_add')}" method="post">
+		用户名：<input type="text" name="username"><br/>
+		照片：<input type="file" name="image"><br/>
+		班级：<select name="grade">
+			<option>--选择--</option>
+			{foreach $grade as $v}
+			<option value="{$v.id}">{$v.grade_name}</option>
+			{/foreach}
+		</select><br/>
+		电话：<input type="text" name="tel"><br/>
+		年龄：<input type="text" name="age"><br/>
+		<input type="submit" name="" value="提交">
+	</form>
+</body>
+</html>

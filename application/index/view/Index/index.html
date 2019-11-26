@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>主页</title>
+</head>
+<body>
+<a href="{:url('Index/add')}">增加学生</a><br/><br/>
+<form action="{:url('Index/index')}" method="get">
+	姓名: <input type="text" name="username" value="{:input('username')}"> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	班级：<select name="grade">
+		<option value="0"> --选择-- </option>
+		{foreach $grade as $v}
+			<option value="{$v.id}" {if $v.id == input('grade')}selected{/if}>{$v.grade_name}</option>
+		{/foreach}
+	</select>
+	<input type="submit" name="" value="搜索">
+</form>
+<table border="1">
+	<tr>
+		<td>id</td>
+		<td>姓名</td>
+		<td>照片</td>
+		<td>手机号</td>
+		<td>班级</td>
+		<td>年龄</td>
+		<td>编辑</td>
+	</tr>
+	{foreach $info as $v}
+	<tr>
+		<td>{$v.id}</td>
+		<td>{$v.username}</td>
+		<td><img src="{$v.image}" height="100"></td>
+		<td>{$v.tel}</td>
+		<td>{$v.grade_name}</td>
+		<td>{$v.age}</td>
+		<td> 
+			<button class="del_btn" type="button" data-id="{$v.id}">删除</button>
+			 | <a href="{:url('Index/update','id='.$v.id)}">修改</a>
+		</td>
+	</tr>
+	{/foreach}
+</table>
+{$info|raw}
+<script type="text/javascript" src="/static/jquery.min.js"></script>
+<script type="text/javascript">
+	$(function(){
+		$('.del_btn').click(function(){
+			var del_id = $(this).attr('data-id');
+			var re = confirm('确认删除么')
+			var _this = $(this);
+			if(re == true){
+				$.ajax({
+					type:'post',
+					url:'{:url('Index/del')}',
+					data:{del_id:del_id},
+					dataType:'json',
+					success:function(result){
+						if(result.errno == 200){
+							//当前行消失
+							_this.parent().parent().remove();
+						}else{
+							alert(result.msg);
+						}
+					}
+				});
+			}else{}
+		});
+	});
+</script>
+</body>
+</html>

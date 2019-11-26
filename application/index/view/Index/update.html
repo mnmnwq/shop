@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>修改</title>
+</head>
+<body>
+	<form enctype="multipart/form-data" action="{:url('Index/do_update')}" method="post">
+		<input type="hidden" name="id" value="{$info.id}">
+		用户名：<input type="text" name="username" value="{$info.username}"><br/>
+		<img src="{$info.image}" height="100"><br/>
+		照片：<input type="file" name="image"><br/>
+		班级：<select name="grade">
+			<option>--选择--</option>
+			{foreach $grade as $v}
+			<option value="{$v.id}" {if $v.id == $info.grade_id}selected{/if}>{$v.grade_name}</option>
+			{/foreach}
+		</select><br/>
+		电话：<input type="text" name="tel" value="{$info.tel}"><br/>
+		年龄：<input type="text" name="age" value="{$info.age}"><br/>
+		<input type="submit" name="" value="提交">
+	</form>
+</body>
+</html>

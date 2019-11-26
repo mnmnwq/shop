@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>登陆</title>
+</head>
+<body>
+	<center>
+		<h1>登陆</h1>
+		<form id="my_form" action="" method="post">
+			用户名：<input type="text" name="username"><span style="color:red;">*</span><br/>
+			密码： <input type="password" name="pass"><span style="color:red;">*</span><br/>
+			<input type="submit" name="" value="提交">
+		</form>
+	</center>
+
+	<script type="text/javascript" src="/static/jquery.min.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$("#my_form").submit(function(){
+				var username = $('input[name=username]').val();
+				var pass = $('input[name=pass]').val();
+				if(username === ''){
+						alert('用户名不能为空');
+						return false;
+					}
+				if(pass === ''){
+					alert('密码不能为空');
+					return false;
+				}
+				$.ajax({
+					type:'post',
+					url:'{:url('Login/do_login')}',
+					data:{username:username,pass:pass},
+					dataType:'json',
+					success:function(result){
+						if(result.errno == 200){
+							alert(result.msg);
+							window.location.href = "{:url('Index/index')}";
+						}else{
+							alert(result.msg);
+						}
+					}
+				});
+				return false;
+			});
+			$('input[name=username]').focus(function(){
+				$(this).next('span').html('*');
+			});
+			$('input[name=username]').blur(function(){
+				if($(this).val() === ''){
+					$(this).next('span').html('用户名不能为空');
+				}
+			});
+			$('input[name=pass]').focus(function(){
+				$(this).next('span').html('*');
+			});
+			$('input[name=pass]').blur(function(){
+				if($(this).val() === ''){
+					$(this).next('span').html('密码不能为空');
+				}
+			});
+		});
+	</script>
+
+</body>
+</html>
