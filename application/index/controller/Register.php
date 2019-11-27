@@ -33,6 +33,23 @@ class Register extends Controller{
 		}
 	}
 
+	public function send_phone(){
+		
+		$config = [
+		    'key_id' => '', // AccessKeyId
+		    'key_secret' => '', //AccessKeySecret
+		    'sign_name' => '',//签名名称
+		    'code' => '',//模板CODE
+		];
+
+		$send = new \Aliyun\Send($config);
+
+		$data = [
+		    'code' => rand(100000,999999)
+		];
+		$send->sendSms('发送手机',$data);
+	}
+
 public function send_email(){
 		$email = input('email'); //收件邮箱
 	 $code = rand(1000,9999); //自己写的 生成验证码
