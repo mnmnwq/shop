@@ -13,8 +13,17 @@ class Register extends Controller{
 	}
 
 	public function do_register(){
+		//验证用户名唯一性
+		$username = input('username');
+		$shop_user = ShopUser::where(['username'=>$username])->find();
+		if($shop_user){
+			echo json_encode(['errno'=>0,'msg'=>'用户名重复']);
+			die;
+		}
+		//注册流程
+		
 		//dump(input());
-		$code = Cache::get('mnmnwq@163_com'); //存到cookie的验证码
+		//$code = Cache::get('mnmnwq@163_com'); //存到cookie的验证码
 		$input_code = input('code'); //表单提交过来的code
 		//判断两个验证码是否相等
 		echo $input_code."<br/>";
