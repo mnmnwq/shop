@@ -6,7 +6,7 @@ class Index
 {
     public function index()
     {
-
+        return view('index');
     }
 
     public function hello($name = 'ThinkPHP5')
