@@ -51,6 +51,7 @@ class Goods extends Common{
 		$shop_goods = new ShopGoods;
 		$shop_goods->goods_name = input('goods_name','');
 		$shop_goods->simple_desc = input('goods_simple','');
+		$shop_goods->goods_price = input('goods_price','0');
 		$shop_goods->goods_pic = $goods_pic;
 		$shop_goods->goods_images = implode('|',$images);
 		$shop_goods->desc = input('desc','');
