@@ -13,4 +13,9 @@ class Register extends Controller{
     {
         return view('index');
     }
+
+    public function do_register()
+    {
+        //执行注册
+    }
 }
