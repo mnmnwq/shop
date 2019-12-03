@@ -12,7 +12,12 @@ use think\Controller;
 class Goods extends Controller{
     public function goods_detail()
     {
-        $goods_info = ShopGoods::where('id',1)->find();
-        return view('goods_detail',['desc'=>$goods_info['desc']]);
+        //GET
+        $goods_id = input('goods_id','0');
+        //查询商品信息
+        $goods_info = ShopGoods::where(['id'=>$goods_id])->find();
+        $images = explode("|",$goods_info['goods_images']);
+        //dump($goods_info);
+        return view('goods_detail',['goods_info'=>$goods_info,'images'=>$images]);
     }
 }
