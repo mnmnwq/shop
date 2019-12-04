@@ -14,6 +14,7 @@ class Category extends Controller{
         $cate_id = input('cate_id','0');
         $pid = ShopCate::where(['id'=>$cate_id])->value('pid');
         $cate_list = ShopCate::where(['pid'=>$pid])->select();
+        $goods_info = ShopGoods::where(['cate_id'=>$cate_id])->paginate(20,false,['query'=>input()]);
         return view('index',['cate_list'=>$cate_list]);
     }
 }

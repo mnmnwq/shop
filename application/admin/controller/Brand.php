@@ -18,7 +18,7 @@ class Brand extends  Controller{
         if($search_name){
             $where[] = ['brand_name','like',"%$search_name%"];
         }
-        $brand_info = ShopBrand::where($where)->paginate(2);
+        $brand_info = ShopBrand::where($where)->paginate(6);
         if(request()->isAjax()){
             return view('ajax_page',['brand_info'=>$brand_info]);
         }
