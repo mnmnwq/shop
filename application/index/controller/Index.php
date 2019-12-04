@@ -10,7 +10,8 @@ class Index
     {
         $cate = ShopCate::select()->toArray();
         $cate_info = $this->createSonTree($cate);
-        return view('index',['cate_info'=>$cate_info]);
+        $cate_list = ShopCate::where(['pid'=>0])->select();
+        return view('index',['cate_info'=>$cate_info,'cate_list'=>$cate_list]);
     }
 
     /**

@@ -2,9 +2,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>商品列表-有点</title>
-    <link rel="stylesheet" type="text/css" href="__STATIC__/admin/css/css.css" />
-    <script type="text/javascript" src="__STATIC__/admin/js/jquery.min.js"></script>
+    <title>约见管理-有点</title>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/css.css" />
+    <script type="text/javascript" src="/static/admin/js/jquery.min.js"></script>
     <!-- <script type="text/javascript" src="js/page.js" ></script> -->
 </head>
 
@@ -12,47 +12,77 @@
 <div id="pageAll">
     <div class="pageTop">
         <div class="page">
-            <img src="__STATIC__/admin/img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;-</span>&nbsp;管理员管理
+            <img src="/static/admin/img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
+                href="#">公共管理</a>&nbsp;-</span>&nbsp;节目管理
         </div>
     </div>
 
     <div class="page">
-        <!-- user页面样式 -->
+        <!-- banner页面样式 -->
         <div class="connoisseur">
             <div class="conform">
                 <form>
                     <div class="cfD">
-                        <input class="userinput" type="text" placeholder="输入用户名" />&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
-                        <input class="userinput vpr" type="text" placeholder="输入用户密码" />
-                        <button class="userbtn">添加</button>
+                        时间段：<input class="vinput" type="text" />&nbsp;&nbsp;&nbsp;-&nbsp;&nbsp;&nbsp;
+                        <input class="vinput vpr" type="text" /> 审核状态： <label><input
+                            type="radio" name="styleshoice1" />&nbsp;待审核</label> <label><input
+                            type="radio" name="styleshoice1" />&nbsp;审核中</label> <label><input
+                            type="radio" name="styleshoice1" />&nbsp;已通过</label> <label class="lar"><input
+                            type="radio" name="styleshoice1" />&nbsp;未通过</label> <input
+                            type="checkbox" name="styleshoice1" />手动排序
+                    </div>
+                    <div class="cfD">
+                        <select>
+                            <option>请选择节目类型</option>
+                            <option>开场歌舞</option>
+                            <option>歌曲</option>
+                            <option>器乐演奏</option>
+                        </select>
+                        <input class="addUser" type="text" placeholder="输入节目名称/参与人" />
+                        <button class="button">搜索</button>
                     </div>
                 </form>
             </div>
-            <!-- user 表格 显示 -->
+            <!-- banner 表格 显示 -->
             <div class="conShow">
-                <table border="1" cellspacing="0" cellpadding="0">
+                <table width="100%" border="1" cellspacing="0" cellpadding="0">
                     <tr>
-                        <td width="66px" class="tdColor tdC">序号</td>
-                        <td width="435px" class="tdColor">会员等级</td>
-                        <td width="400px" class="tdColor">用户名</td>
-                        <td width="630px" class="tdColor">添加时间</td>
-                        <td width="130px" class="tdColor">操作</td>
+                        <td width="5%" class="tdColor tdC">ID</td>
+                        <td width="10%" class="tdColor tdC">商品名称</td>
+                        <td width="5%" class="tdColor">商品价格</td>
+                        <td width="20%" class="tdColor">商品图片</td>
+                        <td width="5%" class="tdColor">是否上架</td>
+                        <td width="5%" class="tdColor">是否最新</td>
+                        <td width="5%" class="tdColor">是否热门</td>
+                        <td width="15%" class="tdColor">添加时间</td>
+                        <td width="10%" class="tdColor">操作</td>
                     </tr>
-                    <tr height="40px">
-                        <td>1</td>
-                        <td>运营专员</td>
-                        <td>山下就只</td>
-                        <td>2015-25-36 12:12</td>
-                        <td><a href="connoisseuradd.html">
-                            <img class="operation" src="__STATIC__/admin/img/update.png"></a>
-                            <img class="operation delban" src="__STATIC__/admin/img/delete.png"></td>
+                    {foreach $goods_info as $v}
+                    <tr>
+                        <td>{$v.id}</td>
+                        <td>{$v.goods_name}</td>
+                        <td>
+                            111
+                        </td>
+                        <td><img src="{$v.goods_pic}" height="100" alt=""></td>
+                        <td>{if $v.is_up==1}是{else}否{/if}</td>
+                        <td>{if $v.is_new==1}是{else}否{/if}</td>
+                        <td>{if $v.is_hot==1}是{else}否{/if}</td>
+                        <td>{php}echo date('Y-m-d H:i:s',$v['add_time']){/php}</td>
+                        <td>
+                            <a href="add.html">
+                                <img class="operation" src="/static/admin/img/update.png">
+                            </a>
+                            <img class="operation delban" src="/static/admin/img/delete.png">
+                        </td>
                     </tr>
+                    {/foreach}
                 </table>
-                <div class="paging">此处是分页</div>
+                <div class="paging">{$goods_info|raw}</div>
             </div>
-            <!-- user 表格 显示 end-->
+            <!-- banner 表格 显示 end-->
         </div>
-        <!-- user页面样式end -->
+        <!-- banner页面样式end -->
     </div>
 
 </div>
@@ -62,7 +92,7 @@
 <div class="banDel">
     <div class="delete">
         <div class="close">
-            <a><img src="__STATIC__/admin/img/shanchu.png" /></a>
+            <a><img src="img/shanchu.png" /></a>
         </div>
         <p class="delP1">你确定要删除此条记录吗？</p>
         <p class="delP2">

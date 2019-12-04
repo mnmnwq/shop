@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>约见编辑-有点</title>
+    <link rel="stylesheet" type="text/css" href="/static/admin/css/css.css" />
+    <script type="text/javascript" src="/static/admin/js/jquery.min.js"></script>
+    <!--引入uedit富文本编辑器js-->
+    <script type="text/javascript" charset="utf-8" src="/static/ue/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="/static/ue/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="/static/ue/lang/zh-cn/zh-cn.js"></script>
+
+</head>
+<body>
+<div id="pageAll">
+    <div class="pageTop">
+        <div class="page">
+            <img src="/static/admin/img/coin02.png" /><span><a href="#">首页</a>&nbsp;-&nbsp;<a
+                href="#">公共管理</a>&nbsp;-</span>&nbsp;添加商品
+        </div>
+    </div>
+    <div class="page ">
+        <!-- 上传广告页面样式 -->
+        <div class="banneradd bor">
+            <div class="baTopNo">
+                <span>添加商品</span>
+            </div>
+            <div class="baBody">
+                <form action="{:url('Goods/do_add')}" method="post" enctype="multipart/form-data">
+                    <div class="bbD">商品名称：&nbsp;&nbsp;&nbsp;
+                        <input type="text" name="goods_name">
+                    </div>
+                    <div class="bbD">简单描述：&nbsp;&nbsp;&nbsp;
+                        <input type="text" name="goods_simple">
+                    </div>
+                    <div class="bbD">
+                        商品分类：&nbsp;&nbsp;&nbsp;
+                        <select name="cate_id">
+                            <option>请选择</option>
+                            {foreach $cate as $v}
+                            <option value="{$v.id}">{php}echo str_repeat('&nbsp;&nbsp;&nbsp;&nbsp;',$v['level'])."|--"{/php}{$v.cate_name}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                    <div class="bbD">
+                        品牌：&nbsp;&nbsp;&nbsp;
+                        <select name="brand_id">
+                            <option>请选择</option>
+                            {foreach $brand_info as $v}
+                            <option value="{$v.id}">{$v.brand_name}</option>
+                            {/foreach}
+                        </select>
+                    </div>
+                    <div class="bbD">商品图片：&nbsp;&nbsp;&nbsp;
+                        <input type="file" name="goods_pic">
+                    </div>
+
+                    <div class="bbD">商品相册：&nbsp;&nbsp;&nbsp;<br/>
+                        <button type="button" id="add_btn">添加</button><br/>
+                        <div id="div_test">
+                            <input type="file" name="goods_images[]">
+                            <button type="button" class="del_btn">删除</button>
+                            <br/>
+                        </div>
+                    </div>
+
+                    <div class="bbD">
+                        商品详情：&nbsp;&nbsp;&nbsp;
+                        <div class="btext">
+                            <script id="editor" name="desc" type="text/plain" style="width:95%;height:500px;"></script>
+                            </div>
+                            </div>
+                            <div class="bbD">
+                                是否热卖：&nbsp;&nbsp;&nbsp;
+                            <label>
+                            <input type="radio" name="is_hot" value="0" checked />&nbsp;否
+                            </label>
+                            <label>
+                            <input type="radio" name="is_hot" value="1" />&nbsp;是
+                            </label>
+                            </div>
+                            <div class="bbD">
+                                是否新品：&nbsp;&nbsp;&nbsp;
+                            <label>
+                            <input type="radio" name="is_new" value="0" checked/>&nbsp;否
+                            </label>
+                            <label>
+                            <input type="radio" name="is_new" value="1" />&nbsp;是
+                            </label>
+                            </div>
+                            <div class="bbD">
+                                是否上架：&nbsp;&nbsp;&nbsp;
+                            <label>
+                            <input type="radio" name="is_up" value="0" checked/>&nbsp;否
+                            </label>
+                            <label>
+                            <input type="radio" name="is_up" value="1" />&nbsp;是
+                            </label>
+                            </div>
+
+                            <div class="bbD">
+                                <p class="bbDP">
+                                <button type="submit" class="btn_ok btn_yes" >提交</button>
+                                <a class="btn_ok btn_no" href="#">取消</a>
+                                </p>
+                                </div>
+                                </form>
+                                </div>
+                                </div>
+
+                                <!-- 上传广告页面样式end -->
+                                </div>
+                                </div>
+                                <script type="text/javascript">
+                                $(function(){
+                                    var ue = UE.getEditor('editor');
+                                    $('#add_btn').click(function(){
+                                        $('#div_test').append('<input type="file" name="goods_images[]"><button type="button" class="del_btn">删除</button><br/>');
+                                    });
+                                    $('#div_test').on('click','.del_btn',function(){
+
+                                        $(this).prev().remove();
+                                        $(this).next().remove();
+                                        $(this).remove();
+                                    });
+                                });
+                            </script>
+</body>
+</html>
